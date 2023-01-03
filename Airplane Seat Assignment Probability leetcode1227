@@ -1,0 +1,10 @@
+class Solution {
+    public double nthPersonGetsNthSeat(int n)
+    {
+        if(n==1) return 1;
+        return 0.5;
+    }
+}
+//reason that the code is small and question rating is medium because of question is asking about the probability of nth person finding his seat 
+//since n number of seats available he will always attain his seat ..if its only one he can take his seat for more than or equal to two the probability is always 1/2.
+//1/2 is represented as 0.5
