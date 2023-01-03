@@ -1,0 +1,42 @@
+class Solution {
+    public int evalRPN(String[] tokens) 
+    {
+         Stack<Integer>st=new Stack<>();
+        for(int i=0;i<tokens.length;i++)
+        {
+            String ch=tokens[i];
+            if(!ch.equals("+") && !ch.equals("-") && !ch.equals("*") && !ch.equals("/")){
+                st.push(Integer.parseInt(ch));
+            }
+            else
+            {
+                int num1=st.pop();
+                int num2=st.pop();
+                switch(ch)
+                {
+                    case "+":
+                        {
+                            st.push(num1+num2);
+                            break;
+                        }
+                        case "-":
+                            {
+                                st.push(num2-num1);
+                                break;
+                            }
+                            case "*":
+                                {
+                                    st.push(num1*num2);
+                                    break;
+                                }
+                                case "/":
+                                    {
+                                        st.push(num2/num1);
+                                        break;
+                                    }
+                }
+            }
+        }
+        return st.pop();
+    }
+}
