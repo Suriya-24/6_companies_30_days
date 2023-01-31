@@ -1,0 +1,22 @@
+public int minimumCardPickup(int[] cards)
+     {
+       HashMap<Integer,Integer>map=new HashMap<>();
+       int count=Integer.MAX_VALUE;
+       for(int i=0;i<cards.length;i++)
+       {
+           if(map.containsKey(cards[i]))
+           {
+               int val=map.get(cards[i]);
+               int move=(i-val+1);
+               count=Math.min(move,count);
+                map.put(cards[i],i);
+           }
+           else
+           {
+               map.put(cards[i],i);
+           }
+       }
+       if(count==Integer.MAX_VALUE)return -1;
+       return count;
+
+    }
