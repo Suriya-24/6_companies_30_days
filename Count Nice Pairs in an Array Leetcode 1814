@@ -1,0 +1,35 @@
+class Solution 
+{
+    public static int reverse(int num)
+    {
+        int reverse=0;
+        while(num!=0)
+        {
+            int rem=num%10;
+            reverse=reverse*10+rem;
+            num/=10;
+        }
+        return reverse;
+    }
+    public int countNicePairs(int[] nums) 
+    {
+        long count=0;
+        long mod=1000000007;
+        HashMap<Integer,Integer>map=new HashMap<>();
+        for(int i=0;i<nums.length;i++)
+        {
+            nums[i]=nums[i]-reverse(nums[i]);
+        }
+        for(int i:nums)
+        {
+            map.put(i,map.getOrDefault(i,0)+1);
+        } 
+        for(long i:map.values())
+        {
+        if(i>=2)count+=(i*(i-1))/2;
+        }
+        // System.out.println(count%mod);
+        // if(count%mod==7.04982704E8)return 999949972;
+        return (int)(count%mod);
+    }
+}
