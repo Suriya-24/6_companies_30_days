@@ -1,0 +1,46 @@
+class Solution 
+{
+    public static boolean[] sieve(int n)
+    {
+        boolean[] prime=new boolean[n+1];
+        Arrays.fill(prime,true);
+        prime[1]=false;
+        prime[0]=false;
+        for(int i=2;i*i<=n;i++)
+        {
+            if(prime[i])
+            {
+            for(int j=2*i;j<=n;j=j+i)
+            {
+                prime[j]=false;
+            }
+            }
+        }
+        return prime;
+    } 
+    public int[] closestPrimes(int left, int right) 
+    {
+        boolean[] prime=sieve(right+1);
+        ArrayList<Integer>pr=new ArrayList<>();
+        for(int i=left;i<=right;i++)
+        {
+            if(prime[i])pr.add(i);
+        }
+        if(pr.size()==0)return new int[]{-1,-1};
+        if(pr.size()==1)return new int[]{-1,-1};
+        if(pr.size()==2)return new int[]{pr.get(0),pr.get(1)};
+       int dis=Integer.MAX_VALUE;
+       int start=0;
+       int end=0;
+       for(int i=0;i<pr.size()-1;i++)
+       {
+           if(pr.get(i+1)-pr.get(i)<dis)
+           {
+               dis=pr.get(i+1)-pr.get(i);
+               start=pr.get(i);
+               end=pr.get(i+1);
+           }
+       }
+       return new int[]{start,end};
+    }
+}
