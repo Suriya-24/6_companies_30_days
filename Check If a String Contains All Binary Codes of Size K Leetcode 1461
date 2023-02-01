@@ -1,0 +1,9 @@
+ HashSet<String>set=new HashSet<String>();
+        int i=0;
+        while(i<=s.length()-k)
+        {
+            set.add(s.substring(i,i+k));
+            i++;
+        }
+        // System.out.println(set);
+        return set.size()==Math.pow(2,k);
