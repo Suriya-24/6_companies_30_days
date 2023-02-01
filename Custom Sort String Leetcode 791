@@ -1,0 +1,23 @@
+public String customSortString(String order, String s)
+     {
+         int[] freq=new int[26];
+        for(char ch:s.toCharArray())freq[ch-'a']++;
+        StringBuilder st=new StringBuilder();
+        for(char ch:order.toCharArray())
+        {
+            while(freq[ch-'a']!=0)
+            {
+                st.append(ch);
+                freq[ch-'a']--;
+            }
+        }
+        for(char i='a';i<='z';i++)
+        {
+            while(freq[i-'a']!=0)
+            {
+                st.append(i);
+                freq[i-'a']--;
+            }
+        }
+        return st.toString();
+    }
