@@ -1,0 +1,24 @@
+public String fractionToDecimal(int numerator, int denominator)
+     {
+         long num=Math.abs((long)numerator);
+         long den=Math.abs((long)denominator);
+         StringBuilder res=new StringBuilder();
+         if(numerator<0 && denominator>0 || numerator>0 && denominator<0)res.append("-");
+         res.append(String.valueOf(num/den));
+         num=num%den;
+         if(num>0)res.append(".");
+         Map<Long,Integer>map=new HashMap<>();
+         while(!map.containsKey(num))
+         {
+             map.put(num,map.size());
+             num*=10;
+             if(num>0)res.append(num/den);
+             num%=den;
+         }
+         if(num>0)
+         {
+             res.insert(res.length()-(map.size()-map.get(num)),"(");
+             res.append(")");
+         }
+         return String.valueOf(res);
+    }
